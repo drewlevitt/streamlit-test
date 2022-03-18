@@ -31,22 +31,22 @@ st.line_chart(sub_df)
 source = data.cars()
 
 line = alt.Chart(source).mark_line().encode(
-    x='Year',
+    x='year(Year)',
     y='mean(Miles_per_Gallon)',
-    color=alt.value("#FFAA00")
-)
+    color='Origin'
+).properties()
 
 band = alt.Chart(source).mark_errorband(extent='stdev').encode(
-    x='Year',
+    x='year(Year)',
     y=alt.Y('Miles_per_Gallon', title='Miles/Gallon'),
-    color=alt.value("#FFAA00")
+    color='Origin'
 )
 
-line2 = alt.Chart(source).mark_line().encode(
-    x='Year',
-    y='mean(Displacement)',
-    color=alt.value("#00AAff")
-)
+# line2 = alt.Chart(source).mark_line().encode(
+#     x='Year',
+#     y='mean(Displacement)',
+#     color=alt.value("#00AAff")
+# )
 
-band + line + line2
+band | line# + line2
 source
